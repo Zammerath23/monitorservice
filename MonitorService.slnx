@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MonitorService/MonitorService.csproj" />
+  </Folder>
+</Solution>

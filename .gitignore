@@ -1,0 +1,19 @@
+# Build output
+bin/
+obj/
+artifacts/
+dist/
+
+# Visual Studio / Rider
+.vs/
+*.user
+*.suo
+*.lscache
+
+# Claude Code local prefs (per-machine, not shared)
+.claude/
+
+# SQLite runtime files
+*.db
+*.db-shm
+*.db-wal

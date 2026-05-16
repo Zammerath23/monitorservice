@@ -1,0 +1,62 @@
+{
+  "defaultIntervalMinutes": 15,
+  "sources": [
+    {
+      "name": "Phoronix RSS",
+      "type": "rss",
+      "url": "https://www.phoronix.com/rss.php",
+      "intervalMinutes": 30,
+      "enabled": false,
+      "seedSilently": true
+    },
+    {
+      "name": "Games Island - nuevos MTG en catálogo",
+      "type": "rss",
+      "url": "https://games-island.eu/rss.xml",
+      "intervalMinutes": 30,
+      "enabled": true,
+      "seedSilently": true,
+      "filter": {
+        "titleMatches": "(?i)\\bmtg\\b|magic.*gathering"
+      }
+    },
+    {
+      "name": "Example HTML product",
+      "type": "html",
+      "url": "https://example.com/",
+      "intervalMinutes": 60,
+      "enabled": false,
+      "watch": {
+        "title": { "selector": "h1", "attribute": "text" },
+        "body":  { "selector": "p",  "attribute": "text" }
+      },
+      "alertOn": ["title", "body"]
+    },
+    {
+      "name": "Example JS product (Playwright)",
+      "type": "playwright",
+      "url": "https://example.com/",
+      "intervalMinutes": 30,
+      "enabled": false,
+      "waitFor": "h1",
+      "watch": {
+        "title": { "selector": "h1", "attribute": "text" }
+      },
+      "alertOn": ["title"]
+    },
+    {
+      "name": "Games Island - MTG Hobbit Collector Booster Box",
+      "type": "playwright",
+      "url": "https://games-island.eu/MTG-The-Hobbit-Collector-Booster-Box-English",
+      "intervalMinutes": 20,
+      "waitFor": "h1.product-title",
+      "watch": {
+        "title":         { "selector": "h1.product-title",          "attribute": "text" },
+        "price":         { "selector": "[itemprop='price']",        "attribute": "content" },
+        "availability":  { "selector": "#add-to-cart",              "attribute": "class" },
+        "availableFrom": { "selector": ".product-offer .panel .h4", "attribute": "text" }
+      },
+      "alertOn": ["price", "availability", "availableFrom"]
+    }
+  ]
+}
