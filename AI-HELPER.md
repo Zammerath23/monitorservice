@@ -150,6 +150,46 @@ Recomendación:
 - **RSS**: casi siempre `true`.
 - **html/playwright** de un producto concreto: déjalo en `false` (la primera notificación te confirma que el monitor funciona).
 
+## `discordMention`
+
+Opcional. Si el usuario pide que cierta fuente **pingue en Discord** (`@here`, `@everyone`, a un rol o usuario concreto), añade este campo. Va al `content` del payload de webhook (los mentions dentro de embeds no disparan ping en Discord — limitación documentada).
+
+Valores válidos:
+
+| Lo que pide el usuario | Valor del campo |
+| --- | --- |
+| "que avise a todos los online" | `"@here"` |
+| "que avise a todo el servidor" | `"@everyone"` |
+| "que avise al rol 'cazadores' (ID 1234567890)" | `"<@&1234567890>"` |
+| "que me avise a mí (ID 9876543210)" | `"<@9876543210>"` |
+| Combinaciones | `"@here <@&1234567890>"` |
+
+Si el usuario no menciona menciones, **NO incluyas el campo**.
+
+Para roles/usuarios el usuario debe darte el ID. Si no lo da, dile que lo saque con clic derecho sobre el rol/usuario en Discord (en modo desarrollador) → "Copy Role ID" / "Copy User ID".
+
+### Ejemplo
+
+Usuario: *"Quiero que cuando aparezca cualquier producto MTG de The Hobbit en games-island, me pinge a @here en Discord — es importante."*
+
+Tu respuesta:
+
+> Aquí tienes la entrada con ping a @here:
+>
+> ```json
+> {
+>   "name": "GI - MTG Hobbit (urgente)",
+>   "type": "rss",
+>   "url": "https://games-island.eu/rss.xml",
+>   "intervalMinutes": 15,
+>   "seedSilently": true,
+>   "filter": { "titleMatches": "(?i)hobbit" },
+>   "discordMention": "@here"
+> }
+> ```
+>
+> Pégalo dentro del array `"sources"` de `sources.json`, separado por una coma del resto.
+
 ## `filter.titleMatches`
 
 Regex .NET aplicado al título del item. Solo conserva items que casan. Útil sobre todo en RSS.

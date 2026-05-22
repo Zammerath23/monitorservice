@@ -128,6 +128,7 @@ Si no quieres trastear con selectores CSS a mano, hay un archivo **[AI-HELPER.md
 | `enabled` | bool | Pausar sin borrar. |
 | `seedSilently` | bool | Primera ejecución guarda snapshots pero no notifica. Recomendado para RSS con backlog. |
 | `filter.titleMatches` | regex | Solo conserva items cuyo título encaje con el regex .NET. Útil para RSS de tienda generalista que solo te interesan ciertos productos. Soporta `(?i)` para case-insensitive. |
+| `discordMention` | string | Texto prepended al mensaje de Discord para disparar notificación. Valores: `"@here"`, `"@everyone"`, `"<@USER_ID>"`, `"<@&ROLE_ID>"`, o combinaciones. Si lo omites, no se pinga a nadie. **Importante**: solo funciona en Discord (los embeds no disparan menciones, por eso lo metemos en `content`). |
 
 ## Para el desarrollador
 

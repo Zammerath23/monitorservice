@@ -34,6 +34,15 @@ public sealed class SourceConfig
     /// dropped before change detection — they are NOT saved to the DB.
     /// </summary>
     public SourceFilter? Filter { get; set; }
+
+    /// <summary>
+    /// Optional Discord mention prepended to the webhook payload. Discord only
+    /// triggers notifications for mentions in the "content" field, never inside
+    /// embeds — so when this is set we put it in content and keep the embed below.
+    /// Accepts "@here", "@everyone", "&lt;@USER_ID&gt;", "&lt;@&amp;ROLE_ID&gt;",
+    /// or any whitespace-separated combination.
+    /// </summary>
+    public string? DiscordMention { get; set; }
 }
 
 public sealed class SourceFilter

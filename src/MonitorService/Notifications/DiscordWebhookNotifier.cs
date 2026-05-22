@@ -89,7 +89,10 @@ public sealed class DiscordWebhookNotifier : INotifier
         return new DiscordWebhookPayload
         {
             Username = string.IsNullOrWhiteSpace(_options.Username) ? null : _options.Username,
-            Embeds = new[] { embed }
+            // Mentions inside embeds never notify; only the "content" field triggers
+            // @here/@everyone/role pings. Put the mention prefix there when set.
+            Content  = string.IsNullOrWhiteSpace(c.DiscordMention) ? null : c.DiscordMention!.Trim(),
+            Embeds   = new[] { embed }
         };
     }
 

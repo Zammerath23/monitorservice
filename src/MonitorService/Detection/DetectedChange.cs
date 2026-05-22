@@ -15,5 +15,6 @@ public sealed record DetectedChange(
     IReadOnlyList<FieldDelta> Deltas,
     string? Url,
     string? Title,
-    DateTimeOffset DetectedAt
+    DateTimeOffset DetectedAt,
+    string? DiscordMention = null
 );

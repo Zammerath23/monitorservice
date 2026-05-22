@@ -50,7 +50,8 @@ public sealed class ChangeDetector
                     changes.Add(new DetectedChange(
                         item.SourceName, item.Key, ChangeKind.NewItem,
                         Deltas: item.Fields.Select(kv => new FieldDelta(kv.Key, null, kv.Value)).ToArray(),
-                        Url: item.Url, Title: item.Title, DetectedAt: DateTimeOffset.UtcNow));
+                        Url: item.Url, Title: item.Title, DetectedAt: DateTimeOffset.UtcNow,
+                        DiscordMention: source.DiscordMention));
                 }
             }
             else if (!string.Equals(previous.Hash, hash, StringComparison.Ordinal))
@@ -71,7 +72,8 @@ public sealed class ChangeDetector
                         changes.Add(new DetectedChange(
                             item.SourceName, item.Key, ChangeKind.FieldChanged,
                             Deltas: deltas, Url: item.Url, Title: item.Title,
-                            DetectedAt: DateTimeOffset.UtcNow));
+                            DetectedAt: DateTimeOffset.UtcNow,
+                            DiscordMention: source.DiscordMention));
                     }
                 }
             }
